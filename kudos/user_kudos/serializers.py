@@ -90,5 +90,3 @@ class UserInfoSerializer(serializers.ModelSerializer):
         if quota:
             return quota.remaining_kudos
         return 3
-
-# class UsersSerializers()
