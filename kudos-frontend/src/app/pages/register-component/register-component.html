@@ -1,0 +1,68 @@
+<div class="center-container">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>Register</mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="example-container">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput [(ngModel)]="username" required style="color: #000000 !important;">
+          <mat-error *ngIf="error && !username">Username is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" [(ngModel)]="email" required style="color: #000000 !important;">
+          <mat-error *ngIf="error && !email">Email is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [(ngModel)]="password" [type]="hide() ? 'password' : 'text'" required style="color: #000000 !important;">
+          <button mat-icon-button matSuffix (click)="clickEvent($event)">
+            <mat-icon>{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error *ngIf="error && !password">Password is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Organization</mat-label>
+            <mat-select [(ngModel)]="organization" required style="color: #000000 !important;">
+                <mat-option *ngFor="let org of organizations" [value]="org.id">
+                {{ org.name }}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="error && !organization">Organization is required</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="error" class="error-message">
+          <mat-icon>error</mat-icon>
+          <span>{{ error }}</span>
+        </div>
+
+        <div *ngIf="success" class="error-message">
+          <span>{{ success }}</span>
+        </div>
+
+       
+        <div class="example-button-row">
+          <button mat-raised-button color="primary" (click)="registerSubmit()" [disabled]="loading">
+            <span *ngIf="!loading">Register</span>
+            <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+          </button>
+        </div>
+
+      
+        <div class="register-prompt">
+          <span>Already have an account?</span>
+          <a routerLink="/login" class="register-link">Login here</a>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

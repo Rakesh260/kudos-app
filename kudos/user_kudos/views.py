@@ -103,7 +103,7 @@ class UserInfoView(APIView):
 
     def get(self, request):
         try:
-            user = User.objects.get(id='3')
+            user = User.objects.get(id=request.user.id)
             serializer = UserInfoSerializer(user)
             print(serializer.data)
             return Response(serializer.data, status=status.HTTP_200_OK)

@@ -1,3 +1,4 @@
+import json
 
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -48,7 +49,8 @@ class LoginSerializer(serializers.Serializer):
         return {
             'refresh': str(refresh),
             'access': str(refresh.access_token),
-            'message': 'Login successful'
+            'message': 'Login successful',
+            # 'user': UserInfoSerializer(user).data
         }
 
 
@@ -80,7 +82,7 @@ class UserInfoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'organization_name', 'kudos_remaining']
+        fields = ['id', 'username', 'email', 'organization', 'organization_name', 'kudos_remaining']
 
     @staticmethod
     def get_kudos_remaining(user):

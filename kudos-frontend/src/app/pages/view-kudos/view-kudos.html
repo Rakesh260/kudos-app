@@ -1,0 +1,28 @@
+<div class="kudos-container">
+  <div class="top-bar">
+    <button mat-stroked-button color="primary" (click)="goBack()" class="back-button">
+      <mat-icon>arrow_back</mat-icon> Back
+    </button>
+    <h2 class="page-title">👏 Kudos Received</h2>
+  </div>
+
+  <ng-container *ngIf="kudosList?.length > 0; else noKudos">
+    <mat-card *ngFor="let kudos of kudosList" class="kudos-card">
+      <mat-card-header>
+        <mat-card-title>
+          <span class="giver-name">{{ kudos.giver_username }}</span>
+        </mat-card-title>
+        <mat-card-subtitle class="date">
+          {{ kudos.created_at | date: 'fullDate' }} — {{ kudos.created_at | date: 'shortTime' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="kudos-message">“{{ kudos.message }}”</p>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+  <ng-template #noKudos>
+    <p class="no-kudos">😕 No kudos received yet.</p>
+  </ng-template>
+</div>

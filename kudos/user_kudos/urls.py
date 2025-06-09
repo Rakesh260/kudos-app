@@ -9,6 +9,6 @@ urlpatterns = [
     path('kudos/give/', GiveKudoView.as_view(), name='give-kudo'),
     path('kudos/received/', ReceivedKudosView.as_view(), name='received-kudos'),
     path('user/info/', UserInfoView.as_view(), name='user-info'),
-    path('users/info/', UsersView.as_view(), name='user-info'),
+    path('users/', UsersView.as_view(), name='user-info'),
 
 ]
